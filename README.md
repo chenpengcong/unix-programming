@@ -1,1 +1,1 @@
-# unix-programming
+基于《Unix/Linux编程实践教程》编写的一些unix系统程序，并对书中代码进行优化，注释和理解
