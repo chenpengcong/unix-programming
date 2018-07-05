@@ -123,7 +123,7 @@ int getch(FILE *fp)
     int ch;
     tcgetattr(fileno(fp), &old_attr);//将FILE对象转为fd, 注意此处不能直接使用STDIN_FILENO,因为使用重定向时标准输入已不再是终端
     new_attr = old_attr;
-    new_attr.c_lflag &= ~(ICANON | ECHO);/
+    new_attr.c_lflag &= ~(ICANON | ECHO);
     tcsetattr(fileno(fp), TCSANOW, &new_attr);
     ch = getc(fp);
     tcsetattr(fileno(fp), TCSANOW, &old_attr);
