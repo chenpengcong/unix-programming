@@ -122,6 +122,9 @@ void mode_to_letter(mode_t mode, char *mode_str)
     if (mode & S_IXUSR) {
         mode_str[3] = 'x'; 
     } 
+    if (mode & S_ISUID) {
+        mode_str[3] = mode & S_IXUSR ? 's': 'S'; 
+    } 
 
     if (mode & S_IRGRP) {
         mode_str[4] = 'r'; 
@@ -132,6 +135,9 @@ void mode_to_letter(mode_t mode, char *mode_str)
     if (mode & S_IXGRP) {
         mode_str[6] = 'x'; 
     }
+    if (mode & S_ISGID) {
+        mode_str[6] = mode & S_IXGRP ? 's': 'S'; 
+    } 
 
     if (mode & S_IROTH) {
         mode_str[7] = 'r'; 
@@ -142,4 +148,7 @@ void mode_to_letter(mode_t mode, char *mode_str)
     if (mode & S_IXOTH) {
         mode_str[9] = 'x'; 
     }
+    if (mode & S_ISVTX) {
+        mode_str[9] = mode & S_IXOTH ? 't': 'T'; 
+    } 
 }
