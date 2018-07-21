@@ -38,6 +38,7 @@ void print_path(ino_t inode)
     struct dirent *dirent_p; 
     DIR *dir_p;
     char name[255];
+    //判断是否到达根目录, 根目录的.和..指向同一个inode节点
     if (inode == get_inode("..")) {
         return; 
     }
