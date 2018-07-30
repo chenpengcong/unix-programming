@@ -14,6 +14,7 @@ int main()
     char cmd[20];
     char buf[20];
     char index = 0;
+    int i = 0;
     pid_t pid;
     while (1) {
         index = 0;
@@ -39,6 +40,10 @@ int main()
             execvp(args[0], args);
         } else {
             wait(NULL); 
+        }
+
+        for (i = 0;i < index;i++) {
+            free(args[i]); 
         }
     }
     return 0;
