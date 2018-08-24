@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define MUTEX 1
+
 int cnt = 0;
 pthread_mutex_t fastmutex = PTHREAD_MUTEX_INITIALIZER;
 void *increase_cnt(void *arg);
@@ -20,8 +22,12 @@ void *increase_cnt(void *arg)
 {
     int i;
     for (i = 0;i < 10000;i++) {
-        //pthread_mutex_lock(&fastmutex);
+#if defined(MUTEX) && MUTEX == 1
+        pthread_mutex_lock(&fastmutex);
+#endif
         cnt = cnt + 1; 
-        //pthread_mutex_unlock(&fastmutex);
+#if defined(MUTEX) && MUTEX == 1
+        pthread_mutex_unlock(&fastmutex);
+#endif
     }
 }
